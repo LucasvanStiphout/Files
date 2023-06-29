@@ -7,14 +7,15 @@ from pathlib import Path
 import os
 import zipfile
 
+basepath = os.getcwd()
+cachepath = os.path.join(basepath, "files", "cache")
+
 
 def clean_cache():
-      path = Path("C:/Users/lucas/Winc/files/cache")
-      if not path.exists():
-            os.mkdir("C:/Users/lucas/Winc/files/cache")
-      else:
-            shutil.rmtree("C:/Users/lucas/Winc/files/cache")
-            os.mkdir("C:/Users/lucas/Winc/files/cache")
+      path = Path(cachepath)
+      if path.exists():
+            shutil.rmtree(cachepath)
+      os.mkdir(cachepath)
 
 
 def cache_zip(file_path, dir_path):
@@ -23,7 +24,7 @@ def cache_zip(file_path, dir_path):
 
 
 def cached_files():
-      p = Path("C:/Users/lucas/Winc/files/cache")
+      p = Path(cachepath)
       filelist = []
       for x in p.iterdir():
            if x.is_file():
